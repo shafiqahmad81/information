@@ -22,3 +22,112 @@ export default defineConfig({
 })
 
 <!--============ Netlify Other page deploy information end =============-->
+<!-- ============= Price Range start =============== -->
+          <div class="p-4 bg-white rounded-sm space-y-3 shadow-[0_0.125rem_0.25rem_rgba(0,0,0,0.075)]">
+            <h4 class="">Price Range</h4>
+            <div class="relative h-6">
+              <div class="absolute top-1/2 -translate-y-1/2 w-full h-0.5 bg-green-700/35 rounded"></div>
+              <div id="rangeTrack" class="absolute top-1/2 -translate-y-1/2 h-0.5 bg-green-700 rounded"></div>
+              <input type="range" id="minRange" min="100" max="100000" value="100" step="100" class="range-input" />
+              <input type="range" id="maxRange" min="100" max="100000" value="100000" step="100" class="range-input" />
+            </div>
+            <div class="flex items-center gap-3">
+              <input id="minInput" type="number" value="100"
+                class="w-full border border-[#dee2e6] rounded px-3 py-1.5 text-sm focus:ring-2 focus:ring-green-500" />
+
+              <input id="maxInput" type="number" value="100000"
+                class="w-full border border-[#dee2e6] rounded px-3 py-1.5 text-sm focus:ring-2 focus:ring-green-500" />
+
+              <button class="text-sm leading-5 border border-green-700 text-green-700 px-2 py-1.5 rounded
+             hover:bg-green-700 hover:text-white transition">
+                Apply
+              </button>
+            </div>
+
+          </div>
+
+          <!-- css -->
+           <style>
+              .range-input {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                appearance: none;
+                background: none;
+                pointer-events: none;
+              }
+
+              .range-input::-webkit-slider-thumb {
+                appearance: none;
+                height: 14px;
+                width: 14px;
+                background: #15803d;
+                border-radius: 9999px;
+                cursor: pointer;
+                pointer-events: auto;
+              }
+
+              .range-input::-moz-range-thumb {
+                height: 14px;
+                width: 14px;
+                background: #15803d;
+                border-radius: 9999px;
+                cursor: pointer;
+                pointer-events: auto;
+              }
+           </style>
+          <!-- css -->
+
+<!-- Range slider -->
+  <script>
+    const minRange = document.getElementById("minRange");
+    const maxRange = document.getElementById("maxRange");
+    const minInput = document.getElementById("minInput");
+    const maxInput = document.getElementById("maxInput");
+    const rangeTrack = document.getElementById("rangeTrack");
+
+    const minGap = 100;
+
+    function updateRange() {
+      let minVal = parseInt(minRange.value);
+      let maxVal = parseInt(maxRange.value);
+
+      if (maxVal - minVal <= minGap) {
+        if (event.target === minRange) {
+          minRange.value = maxVal - minGap;
+        } else {
+          maxRange.value = minVal + minGap;
+        }
+      }
+
+      minInput.value = minRange.value;
+      maxInput.value = maxRange.value;
+
+      const minPercent = (minRange.value / minRange.max) * 100;
+      const maxPercent = (maxRange.value / maxRange.max) * 100;
+
+      rangeTrack.style.left = minPercent + "%";
+      rangeTrack.style.width = maxPercent - minPercent + "%";
+    }
+
+    minRange.addEventListener("input", updateRange);
+    maxRange.addEventListener("input", updateRange);
+
+    minInput.addEventListener("input", () => {
+      minRange.value = minInput.value;
+      updateRange();
+    });
+
+    maxInput.addEventListener("input", () => {
+      maxRange.value = maxInput.value;
+      updateRange();
+    });
+
+    updateRange();
+  </script>
+
+ <!-- ============= Price Range start =============== -->
+
+ <h1>
+  <a href="">https://fancyapps.com/fancybox/</a> good image slider
+ </h1>
